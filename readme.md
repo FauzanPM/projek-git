@@ -1,4 +1,4 @@
-# FINAL TASK
+# wayshub
 ## 1. Provisioning
 ### create server aws with terraform
 
@@ -14,34 +14,21 @@
 > <img width="1884" height="724" alt="image" src="https://github.com/user-attachments/assets/21efbcde-a6a0-4db9-9a88-a2a230c8fa87" />
 > This Terraform file is used to configure network access rules to the server. This security group opens inbound access for SSH, HTTP/HTTPS, as well as several application and monitoring ports that can be added, such as Jenkins, SonarQube, Prometheus, Grafana, and Node Exporter, while outbound rules allow all outgoing traffic without restrictions.
 
-> <img width="1884" height="491" alt="image" src="https://github.com/user-attachments/assets/2c695791-a83d-4141-80a8-36b2e99d7c66" />
+> <img width="1883" height="300" alt="image" src="https://github.com/user-attachments/assets/26793eb6-aa97-4206-9b94-cf3454d8918a" />
 > This file is used to define hosts and their grouping in Ansible, such as appserver, monitoring, and gateway. Each group contains the target server IP, as well as global variables to determine the SSH user and Python interpreter used during playbook execution.
 
-> <img width="1885" height="487" alt="image" src="https://github.com/user-attachments/assets/6e8ebfed-ee12-4445-b62f-1c947552ad14" />
-> This configuration file is used to set Ansible's default behavior, such as the inventory location, SSH key used, remote user, and disabling host key checking. In addition, this configuration also sets SSH connection optimization and privilege escalation using sudo.
+> <img width="1883" height="190" alt="image" src="https://github.com/user-attachments/assets/6a0caeef-cd3d-433d-978e-b77e4575fa36" />
+> This configuration file is used to set Ansible's default behavior, such as the inventory location, SSH key used, remote user, and disabling host key checking.
 
 > <img width="1870" height="254" alt="image" src="https://github.com/user-attachments/assets/ebe0afd2-d31c-49a2-a4f9-618347cd2441" />
 > When I check the server, the result is successful.
 
-> <img width="1885" height="525" alt="image" src="https://github.com/user-attachments/assets/9cd598d9-20d2-48b6-8553-7a0e3b9657cf" />
-> This playbook serves to create devops users across all servers, grant sudo access rights, and add SSH public keys so that users can log in via SSH. Users are created with a home directory, bash shell, SHA-256 hashed encrypted password, and are added to the sudo group.
-
 
 ## 2. Repository
 
-> <img width="1887" height="960" alt="image" src="https://github.com/user-attachments/assets/974b3d0d-82af-4946-8e56-dbade12d4540" />
-> <img width="1884" height="864" alt="image" src="https://github.com/user-attachments/assets/02f6b06c-e8f6-4f53-a511-406cbb37a1bf" />
-> <img width="1871" height="268" alt="image" src="https://github.com/user-attachments/assets/bc8114eb-4534-47bd-bcd8-40a270b452b5" />
-> <img width="1919" height="647" alt="image" src="https://github.com/user-attachments/assets/26f0fb76-dac4-45ab-85cd-525c56ee3c01" />
-> This playbook is used to set up the initial Git configuration on the application server. Its functions include creating an SSH directory, adding GitHub to known_hosts, setting up Git identity (username & email), cloning the frontend and backend template repositories, changing the remote to a private repository, and creating and pushing staging and production branches to GitHub.
-
-> <img width="1885" height="952" alt="image" src="https://github.com/user-attachments/assets/cb7097b0-f2be-4d22-bef4-e987c4310e2c" />
-> <img width="1877" height="645" alt="image" src="https://github.com/user-attachments/assets/fdbc7ade-ccac-4f7e-9028-489353c32836" />
-> This playbook is used to push local code changes to the GitHub repository. The script will automatically commit and then push to the staging and production branches for the frontend and backend, thereby simplifying the code synchronization process between environments.
-
-> <img width="1881" height="966" alt="image" src="https://github.com/user-attachments/assets/447a43f9-7d96-4c63-9f49-d1a281a88ea2" />
-> <img width="1882" height="630" alt="image" src="https://github.com/user-attachments/assets/cd0bf2a8-9ca8-4c7b-ab66-486f9f51dd70" />
-> This playbook is used to update application code by pulling the frontend and backend repositories from GitHub based on a specific branch (default: staging). It is used on deployment servers to ensure that the running code always follows the latest version of the repository.
+> <img width="1884" height="777" alt="image" src="https://github.com/user-attachments/assets/0b89fd10-39ca-4298-a27a-0b09fad99430" />
+> <img width="1886" height="807" alt="image" src="https://github.com/user-attachments/assets/d5ae442b-2145-4e89-bbef-d3ae90b65d70" />
+> This playbook is used to update application code by pulling the frontend and backend repositories from GitHub based on a specific branch (default: main). It is used on deployment servers to ensure that the running code always follows the latest version of the repository.
 
 
 ## 3. setup configuration
@@ -55,88 +42,59 @@
 > <img width="1889" height="891" alt="image" src="https://github.com/user-attachments/assets/0d7555e9-e2e9-4da3-8789-101af77ac49d" />
 > This playbook is used to install and set up Docker Engine on all hosts. The process includes updating the system repository, installing supporting dependencies, adding the GPG key and official Docker repository, installing Docker Engine and its components, ensuring that the Docker service runs automatically, and adding users to the docker group so that they can run Docker without root access.
 
-> <img width="1884" height="970" alt="image" src="https://github.com/user-attachments/assets/290beb1f-3fee-42b7-ab17-7f56ac59550b" />
-> <img width="1885" height="89" alt="image" src="https://github.com/user-attachments/assets/3d7fbc13-edfb-404b-874d-8bbe54d72e09" />
-> This playbook is used to run Jenkins using Docker on a monitoring server. The process includes creating a Jenkins data storage directory, running the Jenkins container with the necessary ports and volumes, waiting until the initial password file is available, and displaying the Jenkins access URL and initial admin password for the initial setup process.
+## 3. deploy
 
-> <img width="1880" height="967" alt="image" src="https://github.com/user-attachments/assets/3e7122c2-72f2-4f64-bb90-3d7cd89fa2a2" />
-> <img width="1892" height="806" alt="image" src="https://github.com/user-attachments/assets/e8d57963-fe41-4938-a3a1-15072fec322a" />
-> <img width="1886" height="901" alt="image" src="https://github.com/user-attachments/assets/8b4b696f-fc80-4ad2-b5d6-065728ade457" />
-> <img width="1894" height="387" alt="image" src="https://github.com/user-attachments/assets/9d814425-30d6-4d62-90b8-d4261fc1d034" />
-> This playbook is used to deploy SonarQube along with a PostgreSQL database using Docker. The process includes creating directories and setting permissions for SonarQube data, adjusting the vm.max_map_count kernel parameter for Elasticsearch, running the PostgreSQL container as a database, and running the SonarQube container connected via a dedicated Docker network.
+> <img width="1919" height="140" alt="image" src="https://github.com/user-attachments/assets/d4e65efe-86fc-4c87-bd21-4d47a75dbdab" />
+> Displaying containers running on the server: frontend, backend, MySQL, and private Docker registry. All services are active and each has been exposed to the appropriate port for application, database, and registry access.
 
-## 3. CI/CD
+### FRONTEND
 
-> <img width="1636" height="312" alt="image" src="https://github.com/user-attachments/assets/7f0763b8-36e4-47a1-9741-cb84195685ce" />
-> adding credentials to log in to the server, git repository, and connecting to SonarQube
+This frontend site is built using [GitHub Pages Frontend](https://github.com/FauzanPM/wayshub_fe.git).
+> <img width="1455" height="667" alt="image" src="https://github.com/user-attachments/assets/e7eb59f5-10de-497c-ba5c-92903b52f59b" />
+> This Dockerfile uses a multi-stage build for Node.js-based frontend applications. The first stage is used to install dependencies and build the application, while the second stage only runs the build results with PM2 to make it lighter and more stable. The application is exposed on port 3000 and runs using pm2-runtime for production needs.
 
-> <img width="1296" height="741" alt="image" src="https://github.com/user-attachments/assets/0d012001-31db-4e87-89f4-5ab54d20c6f7" />
-> Using a Jenkins multibranch pipeline and performing Branch Sources to Git with an SSH repository and SSH Git credentials, then scanning all branches.
+> <img width="1449" height="820" alt="image" src="https://github.com/user-attachments/assets/37144ff0-8dc0-4285-a6f5-2ecbf3b926c7" />
+> <img width="1429" height="702" alt="image" src="https://github.com/user-attachments/assets/4f246d11-6a1a-47d5-8d46-3875c2b94c93" />
+> <img width="1431" height="286" alt="image" src="https://github.com/user-attachments/assets/e6e1f1f5-24d4-4d85-8488-77691b5dd980" />
+> This workflow automates the process of building, pushing, and deploying frontend applications. The pipeline runs when there is a push to the main branch, builds a Docker image, sends it to a private registry, and then deploys it to the server via SSH by running the frontend container on port 3000.
 
-> <img width="1514" height="178" alt="image" src="https://github.com/user-attachments/assets/f9b72263-b98c-4b3b-b61a-01bfdbe27a28" />
-> Then branches will appear as above in the form of staging and production according to the git repository.
+> <img width="1441" height="723" alt="image" src="https://github.com/user-attachments/assets/cdbae117-820c-449e-a9bb-d6741c42f0e6" />
+> This file configures the Axios client for the frontend, with a baseURL to the backend API. The setAuthToken function is available to add or remove the Authorization Bearer token in the header of each API request.
 
-> <img width="1194" height="533" alt="image" src="https://github.com/user-attachments/assets/85a5098f-f323-456f-b10d-a978d3f9773d" />
-> Webhooks are used to trigger actions every time a push is made to a git repository by adding the Jenkins URL to the repository webhook.
+> <img width="1889" height="964" alt="image" src="https://github.com/user-attachments/assets/87eca021-6b6f-427a-bf77-8afccf720521" />
+> The result of the process run by the GitHub Action workflow. 
 
-> <img width="1463" height="115" alt="image" src="https://github.com/user-attachments/assets/7758b923-7e6a-4195-88f8-c3769b19e431" />
-> To connect Jenkins with SonarQube, you need a token from SonarQube that has been entered into the Jenkins credentials.
+> <img width="1919" height="1062" alt="image" src="https://github.com/user-attachments/assets/8de4d65a-2be9-4636-b3ff-63e48bcd2dbc" />
+> If the frontend deployment is successful, it can be accessed via the URL https.
 
-> <img width="1660" height="786" alt="image" src="https://github.com/user-attachments/assets/c13ec0da-74ef-4805-8400-d08d0a821da5" />
-> adding the SonarQube URL to the Jenkins system
 
-> <img width="1612" height="635" alt="image" src="https://github.com/user-attachments/assets/642ecdd1-77d8-4bad-93a9-02bd6b2b0371" />
-> adding SonarQube and Maven tools in Jenkins 
+### 4. BACKEND
 
-> <img width="1436" height="497" alt="image" src="https://github.com/user-attachments/assets/4a867edf-f5e3-4fc0-a498-13e1b0b6d46c" />
-> After running Jenkins, the project will automatically appear in SonarQube.
+This backend site is built using [GitHub Pages Backend](https://github.com/FauzanPM/wayshub_be.git).
+> <img width="1444" height="588" alt="image" src="https://github.com/user-attachments/assets/8a41564b-292c-4891-94a1-3d73eee2c189" />
+> Used to build and run Node.js-based backend applications using a multi-stage method. The build stage installs dependencies, then the runtime stage runs the application using PM2 for greater stability in production.
+>
+> <img width="1446" height="860" alt="image" src="https://github.com/user-attachments/assets/f6000dd5-4656-4909-8156-2b40ae789b4e" />
+> Sequelize configuration file that defines database connections for development, test, and production environments, including credentials, host, and MySQL dialect.
+>
+> <img width="1435" height="882" alt="image" src="https://github.com/user-attachments/assets/7b2a5022-504a-4406-b431-cc3d7b2ad42d" />
+> Used to run MySQL 5.7 in a Docker container, complete with user, database, port, and volume configurations to keep database data persistent.
+>
+> <img width="1429" height="892" alt="image" src="https://github.com/user-attachments/assets/72a1a165-461c-409c-ba42-dc5cf2e70a16" />
+> <img width="1435" height="772" alt="image" src="https://github.com/user-attachments/assets/08c8bc66-35cb-4bed-a3b6-d81c224bccbd" />
+> <img width="1431" height="740" alt="image" src="https://github.com/user-attachments/assets/25802c62-1ed3-4e17-acb4-e96bf89396cf" />
+> This workflow automates the build, push, and deploy processes for the backend. Every push to the main branch triggers the backend image to be built and pushed to the private registry. The server then pulls the latest image, ensures the MySQL container is running, starts the backend container, and executes database migrations (Sequelize) after the application is active.
+>
+> <img width="1897" height="972" alt="image" src="https://github.com/user-attachments/assets/44b052c5-68c2-4198-a8ef-beaa68b35441" />
+> The result of the process run by the GitHub Action workflow.
 
-## 4. Deploy
+> <img width="1919" height="1058" alt="image" src="https://github.com/user-attachments/assets/3ec8b36b-bc15-4eba-a1a4-922de6e354a8" />
+> <img width="1919" height="973" alt="image" src="https://github.com/user-attachments/assets/3c027615-1111-40c9-90a1-79255f4c9d8d" />
+> If the backend and database deployment is successful, the website will be able to register and log in.
 
-<img width="1645" height="137" alt="image" src="https://github.com/user-attachments/assets/1aff16c3-b8f5-48cb-ae71-97bff997f871" />
+> <img width="1894" height="927" alt="image" src="https://github.com/user-attachments/assets/0abe2513-69cd-40e5-8314-06fef91496a3" />
+> This step ensures that the MySQL container is running correctly and that the Wayshub database has been successfully created and populated. The tables resulting from the Sequelize migration are visible, and the data in the Channels table has been successfully stored, indicating that the backend is connected to the database and that CRUD operations are running normally.
 
-### Frontend
-
-> <img width="1886" height="520" alt="image" src="https://github.com/user-attachments/assets/74eb9b2e-7f46-40bd-8c9c-646ad336e38d" />
-> This Dockerfile is used to build the application frontend image using a multi-stage build approach. The first stage builds the React/Node.js v16 application, while the second stage uses Nginx to serve the build results as a static web, making the image lighter and ready to run in a production environment.
-
-> <img width="1790" height="62" alt="image" src="https://github.com/user-attachments/assets/ce4b794f-404e-425d-a9ad-411414b8d601" />
-> the result of images that have been created based on the previous Dockerfile
-
-> <img width="1882" height="86" alt="image" src="https://github.com/user-attachments/assets/6443d35f-cc68-4eed-bb8b-7b53ebf3bcad" />
-> add baseurl to connect frontend with backend
-
-> <img width="1882" height="960" alt="image" src="https://github.com/user-attachments/assets/6557d203-1bbe-4e6b-9520-20ab9c42cd41" />
-> <img width="1885" height="896" alt="image" src="https://github.com/user-attachments/assets/0d588d5b-b7be-46dc-9120-d6591ee1d84e" />
-> <img width="1892" height="860" alt="image" src="https://github.com/user-attachments/assets/998972e3-cde8-420c-9e47-363d8f038ddc" />
-> <img width="1881" height="399" alt="image" src="https://github.com/user-attachments/assets/8ce65705-60b2-4457-99c1-998950c314f3" />
-> This file defines a Jenkins-based frontend CI/CD pipeline. The pipeline will run automatically when there is a push to GitHub, perform code quality analysis using SonarQube, pull the latest code according to the branch, build a Docker image, stop old containers, run new containers based on the branch (staging/production), and perform health checks with wget spider to ensure the application is running properly.
-
-> <img width="1793" height="344" alt="image" src="https://github.com/user-attachments/assets/7c16cf32-d863-4625-9274-44132f74a4e7" />
-> results from checking using wget spider 
-
-> <img width="1919" height="1056" alt="image" src="https://github.com/user-attachments/assets/bb81ec23-ecdf-4da5-bec2-47ab68b84d24" />
-> results after successfully deploying the frontend
-
-### Backend
-
-> <img width="1882" height="564" alt="image" src="https://github.com/user-attachments/assets/b7bfd5bc-837c-4a72-84d5-8a5b1782a5c4" />
-> This file is used to build a Golang v1.16-based backend image using a multi-stage build. The builder stage compiles the Go application into a static binary, then the runtime stage runs that binary on a lightweight Alpine image, including the .env configuration file, so that the container is ready to run with a minimal image size.
-
-> <img width="1714" height="57" alt="image" src="https://github.com/user-attachments/assets/0777ca67-b6b0-48c6-83ac-8e4baa77d72b" />
-> he result of images that have been created based on the previous Dockerfile
-
-> <img width="1880" height="955" alt="image" src="https://github.com/user-attachments/assets/5302db69-4fec-4115-afcf-710cfe70f454" />
-> <img width="1882" height="900" alt="image" src="https://github.com/user-attachments/assets/3f127120-8945-4a7b-82b4-6d5380d3bf26" />
-> <img width="1887" height="859" alt="image" src="https://github.com/user-attachments/assets/51657e46-a21d-4b6b-9875-a84057130922" />
-> <img width="1889" height="569" alt="image" src="https://github.com/user-attachments/assets/851f2166-c176-4585-a678-6619814ed494" />
-> This file defines a Jenkins-based CI/CD backend pipeline. The pipeline will automatically run when there is a push to GitHub, perform code quality analysis using SonarQube, pull the latest code according to the branch, build the backend Docker image, stop the old container, run the new container with the appropriate port and network configuration, and perform a health check to ensure that the backend service is running normally.
-
-> <img width="1886" height="411" alt="image" src="https://github.com/user-attachments/assets/64348113-b682-436d-9087-6264df4429f1" />
-> File ini digunakan sebagai konfigurasi environment backend aplikasi. Isinya mencakup pengaturan keamanan (secret key), endpoint file upload, kredensial payment gateway, konfigurasi email sistem, serta parameter koneksi database PostgreSQL dan port aplikasi yang digunakan oleh backend.
-
-> <img width="1588" height="438" alt="image" src="https://github.com/user-attachments/assets/0d2b5135-9ead-4e08-a365-514bdabf5742" />
-> Then, we checked the structure and content of the DumbMerch application database running in the PostgreSQL container. The process was done by entering the database container, viewing the list of available tables, and displaying the data in the users table to ensure that the database schema and initial application data had been created and were running properly.
 
 ## 5. Monitoring
 
@@ -179,28 +137,23 @@
 > Display an alert message when rules exceed the pending time limit, showing the usage value, alert name, alert folder, and which server exceeded the rules. Send a resolved message when the rules have been addressed.
 
 ## 6. SSL
-> <img width="1885" height="582" alt="image" src="https://github.com/user-attachments/assets/6b806d19-9881-4dfd-b1b1-8bd25a91c7b6" />
-> <img width="1887" height="965" alt="image" src="https://github.com/user-attachments/assets/f86f1e1b-2353-4380-ae1e-3b37f10bbe74" />
-> This playbook is used to configure SSL on Nginx reverse proxy using Let's Encrypt wildcard certificates. This playbook creates HTTPS configurations for various services (frontend & backend production/staging, Jenkins, Docker registry, Node Exporter, Grafana, and Prometheus), redirects HTTP to HTTPS, applies the same SSL certificate, tests the Nginx configuration, and reloads the Nginx service to activate the changes.
+> <img width="1883" height="921" alt="image" src="https://github.com/user-attachments/assets/bdd52595-13e9-45da-b28b-ce9284883fae" />
+> <img width="1884" height="903" alt="image" src="https://github.com/user-attachments/assets/fb2bc770-f4e4-47bd-b2d9-39e7282430f3" />
+> <img width="1889" height="854" alt="image" src="https://github.com/user-attachments/assets/4e556c9a-da4f-4969-9f0d-069feac45686" />
+> <img width="1887" height="887" alt="image" src="https://github.com/user-attachments/assets/919a2489-f807-493a-a40f-73cd8edf5075" />
+> <img width="1892" height="903" alt="image" src="https://github.com/user-attachments/assets/69394c56-51de-46bd-85bb-ce83731e52cb" />
+> <img width="1886" height="788" alt="image" src="https://github.com/user-attachments/assets/70ae60ce-a792-468c-81b9-ac528b84f5e3" />
+> This playbook installs Nginx and configures a reverse proxy for various services (frontend, backend, staging, Jenkins, registry, monitoring). Each domain is directed to the IP and port of the related service, then Nginx is reloaded so that the configuration takes effect.
 
-> <img width="1919" height="774" alt="image" src="https://github.com/user-attachments/assets/7cad8869-ec2e-4624-bcca-a1dd4e459475" />
-> <img width="1919" height="928" alt="image" src="https://github.com/user-attachments/assets/29c1948a-0118-4b30-8677-e0776f865b64" />
-> <img width="1919" height="843" alt="image" src="https://github.com/user-attachments/assets/fa311ed7-afd1-4e52-a3ba-21338c916183" />
-> <img width="1919" height="922" alt="image" src="https://github.com/user-attachments/assets/9732f8a9-dd40-435c-ab50-97dde5e37ab1" />
-> <img width="1919" height="874" alt="image" src="https://github.com/user-attachments/assets/50a0c23a-57fa-4ced-b3b3-c94dc700487d" />
-> <img width="1919" height="856" alt="image" src="https://github.com/user-attachments/assets/34256157-adb1-4f3c-a031-6f8f4cc97b14" />
-> <img width="1919" height="744" alt="image" src="https://github.com/user-attachments/assets/4b556c2f-ec44-487a-a760-72bcc917483e" />
-> <img width="1919" height="864" alt="image" src="https://github.com/user-attachments/assets/d61baaa5-e3d1-490b-848f-359df79a97c4" />
-> <img width="1919" height="669" alt="image" src="https://github.com/user-attachments/assets/8dc84535-4327-434d-9072-63de4da05dfe" />
-> This playbook is used to configure SSL/TLS on Nginx reverse proxy on the gateway server using Let's Encrypt wildcard certificates. All application services, CI/CD, and monitoring are accessed via HTTPS with an automatic redirect mechanism from HTTP to HTTPS.
-> 
-> This playbook creates reverse proxy configurations for frontend and backend in production and staging environments, as well as supporting services such as Jenkins, Docker Registry, Grafana, Prometheus, and Node Exporter. Each domain is directed to the appropriate service based on the internal port of each container or application.
-> 
-> In addition to SSL implementation, this configuration also forwards standard headers (Host, X-Real-IP, X-Forwarded-*) so that the backend application continues to receive the original request information from the client. For Prometheus, basic authentication is implemented to restrict access to the monitoring dashboard.
-> 
-> Once all configurations are complete, the playbook will validate the Nginx configuration and reload the Nginx service without downtime so that all changes take effect immediately.
+> <img width="1883" height="777" alt="image" src="https://github.com/user-attachments/assets/0d51e4b0-a6ee-40e8-a38e-55f6d5131df5" />
+> <img width="1882" height="496" alt="image" src="https://github.com/user-attachments/assets/1c1cee83-ea58-405f-9b39-a54f96633eff" />
+> This playbook installs Certbot and the Nginx plugin to enable SSL/TLS (HTTPS) on all domains in use. Let’s Encrypt certificates are automatically generated, and Nginx is reloaded to immediately apply secure connections.
 
 
 
 
-[A link to that custom anchor](#my-custom-anchor-point)
+
+
+
+
+
