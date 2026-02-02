@@ -150,6 +150,42 @@ This backend site is built using [GitHub Pages Backend](https://github.com/Fauza
 > This playbook installs Certbot and the Nginx plugin to enable SSL/TLS (HTTPS) on all domains in use. Let’s Encrypt certificates are automatically generated, and Nginx is reloaded to immediately apply secure connections.
 
 
+# kubernetes frontend wayshub
+
+## 1. Persiapan Cluster Kubernetes
+<img width="1858" height="121" alt="image" src="https://github.com/user-attachments/assets/252edace-f918-453c-92e4-be43c77ad6f3" />
+<img width="1877" height="212" alt="image" src="https://github.com/user-attachments/assets/84da1870-1e6d-4817-a55e-17544aae3f34" />
+
+## 2. Instalasi Komponen Pendukung
+<img width="1880" height="96" alt="image" src="https://github.com/user-attachments/assets/82b9e184-538c-403f-b8bb-060173a52638" />
+<img width="1919" height="332" alt="image" src="https://github.com/user-attachments/assets/4cc9e915-6670-4a51-91b8-e97af7260a86" />
+<img width="1879" height="118" alt="image" src="https://github.com/user-attachments/assets/53b01c3d-e49d-4472-af34-260663a0d62e" />
+
+## 3. Persiapan Aplikasi Frontend
+<img width="1919" height="473" alt="image" src="https://github.com/user-attachments/assets/42e6e3de-438e-4712-9c4f-7d6a883ac115" />
+<img width="1893" height="366" alt="image" src="https://github.com/user-attachments/assets/65d9b3bf-8377-4210-87da-138693cc2e08" />
+<img width="1892" height="361" alt="image" src="https://github.com/user-attachments/assets/ae328770-0b90-4c30-9899-6f603486be9c" />
+
+## 4. Build dan Push Image
+<img width="1501" height="926" alt="image" src="https://github.com/user-attachments/assets/a04fb315-6f95-4721-91d5-20f17fa44381" />
+<img width="1452" height="504" alt="image" src="https://github.com/user-attachments/assets/4936fedd-815a-4499-ad3f-62b81036af6e" />
+
+## 5. Konfigurasi Kubernetes Manifest
+<img width="1896" height="530" alt="image" src="https://github.com/user-attachments/assets/9c18c875-54b6-4461-9d88-c426bf21aed4" />
+<img width="1895" height="326" alt="image" src="https://github.com/user-attachments/assets/3c73c42a-73e6-4ca4-aa10-08e505120b28" />
+<img width="1897" height="625" alt="image" src="https://github.com/user-attachments/assets/7ca70a41-09f2-4635-9ee2-e60e9f2f00a9" />
+<img width="1893" height="372" alt="image" src="https://github.com/user-attachments/assets/9ec975d4-9808-4dc9-8a00-2a696140e608" />
+
+## 6. Verifikasi Deployment
+<img width="1919" height="303" alt="image" src="https://github.com/user-attachments/assets/dccbbbdf-2a35-4936-b567-ab54ab0531bf" />
+<img width="1919" height="219" alt="image" src="https://github.com/user-attachments/assets/919e61df-05e2-4bde-a48f-0c250ecc91ed" />
+
+
+
+
+
+
+
 
 
 
