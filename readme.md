@@ -153,30 +153,41 @@ This backend site is built using [GitHub Pages Backend](https://github.com/Fauza
 # kubernetes frontend wayshub
 
 ## 1. Persiapan Cluster Kubernetes
+Menunjukkan cluster Kubernetes sudah siap digunakan dengan 1 node master dan 2 node worker dalam kondisi Ready, serta namespace yang dibutuhkan sudah tersedia.
 <img width="1858" height="121" alt="image" src="https://github.com/user-attachments/assets/252edace-f918-453c-92e4-be43c77ad6f3" />
 <img width="1877" height="212" alt="image" src="https://github.com/user-attachments/assets/84da1870-1e6d-4817-a55e-17544aae3f34" />
 
 ## 2. Instalasi Komponen Pendukung
+Memastikan komponen penting seperti Ingress NGINX dan cert-manager sudah berjalan dengan normal untuk kebutuhan routing dan SSL.
 <img width="1880" height="96" alt="image" src="https://github.com/user-attachments/assets/82b9e184-538c-403f-b8bb-060173a52638" />
 <img width="1919" height="332" alt="image" src="https://github.com/user-attachments/assets/4cc9e915-6670-4a51-91b8-e97af7260a86" />
 <img width="1879" height="118" alt="image" src="https://github.com/user-attachments/assets/53b01c3d-e49d-4472-af34-260663a0d62e" />
 
 ## 3. Persiapan Aplikasi Frontend
+Struktur project frontend disiapkan, termasuk Dockerfile multi-stage untuk build React app dan konfigurasi NGINX sebagai web server.
 <img width="1919" height="473" alt="image" src="https://github.com/user-attachments/assets/42e6e3de-438e-4712-9c4f-7d6a883ac115" />
+Dockerfile ini menggunakan multi-stage build untuk membangun aplikasi frontend menggunakan Node.js, kemudian hasil build berupa file statis dijalankan menggunakan NGINX sebagai web server yang ringan dan efisien, dengan konfigurasi NGINX khusus serta mengekspos port 80 untuk akses aplikasi.
 <img width="1893" height="366" alt="image" src="https://github.com/user-attachments/assets/65d9b3bf-8377-4210-87da-138693cc2e08" />
+File nginx.conf ini berfungsi mengatur NGINX sebagai web server frontend dengan menjalankan aplikasi di port 80, menampilkan file statis dari hasil build, mendukung routing SPA menggunakan try_files, serta mengaktifkan gzip compression untuk meningkatkan performa loading aplikasi.
 <img width="1892" height="361" alt="image" src="https://github.com/user-attachments/assets/ae328770-0b90-4c30-9899-6f603486be9c" />
 
 ## 4. Build dan Push Image
+Workflow GitHub Actions ini digunakan untuk build dan push Docker image frontend secara otomatis ke private registry setiap ada push ke branch main, dimulai dari checkout source code, login ke registry menggunakan secret, lalu membangun image dan mengirimkannya ke registry dengan tag latest.
 <img width="1501" height="926" alt="image" src="https://github.com/user-attachments/assets/a04fb315-6f95-4721-91d5-20f17fa44381" />
 <img width="1452" height="504" alt="image" src="https://github.com/user-attachments/assets/4936fedd-815a-4499-ad3f-62b81036af6e" />
 
 ## 5. Konfigurasi Kubernetes Manifest
+File deployment.yaml ini mendefinisikan Deployment Kubernetes untuk aplikasi frontend Wayshub dengan 2 replica agar high availability, menggunakan image dari private registry, menjalankan container di port 80, serta memastikan pod selalu diperbarui dengan image terbaru.
 <img width="1896" height="530" alt="image" src="https://github.com/user-attachments/assets/9c18c875-54b6-4461-9d88-c426bf21aed4" />
+File service.yaml ini berfungsi membuat Service Kubernetes bertipe ClusterIP untuk mengekspos aplikasi frontend di dalam cluster, mengarahkan traffic ke pod dengan label wayshub-frontend melalui port 80.
 <img width="1895" height="326" alt="image" src="https://github.com/user-attachments/assets/3c73c42a-73e6-4ca4-aa10-08e505120b28" />
+File **ingress.yaml** ini mengatur **akses HTTP/HTTPS ke aplikasi frontend** melalui domain `kube.fauzan.studentdumbways.my.id`, menggunakan **NGINX Ingress Controller**, mengaktifkan **SSL otomatis dari cert-manager (Let’s Encrypt)**, serta meneruskan traffic ke Service frontend pada port 80.
 <img width="1897" height="625" alt="image" src="https://github.com/user-attachments/assets/7ca70a41-09f2-4635-9ee2-e60e9f2f00a9" />
+File clusterissuer.yaml ini digunakan untuk mengonfigurasi cert-manager agar dapat menerbitkan sertifikat SSL dari Let’s Encrypt secara otomatis di seluruh cluster Kubernetes, menggunakan ACME HTTP-01 challenge melalui NGINX Ingress Controller, serta menyimpan kunci privat sertifikat pada secret letsencrypt-prod.
 <img width="1893" height="372" alt="image" src="https://github.com/user-attachments/assets/9ec975d4-9808-4dc9-8a00-2a696140e608" />
 
 ## 6. Verifikasi Deployment
+Dilakukan pengecekan pod, service, ingress, dan sertifikat untuk memastikan aplikasi berjalan normal dan dapat diakses melalui HTTPS.
 <img width="1919" height="303" alt="image" src="https://github.com/user-attachments/assets/dccbbbdf-2a35-4936-b567-ab54ab0531bf" />
 <img width="1919" height="219" alt="image" src="https://github.com/user-attachments/assets/919e61df-05e2-4bde-a48f-0c250ecc91ed" />
 
