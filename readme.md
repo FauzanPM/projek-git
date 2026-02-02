@@ -152,7 +152,7 @@ This backend site is built using [GitHub Pages Backend](https://github.com/Fauza
 
 # kubernetes frontend wayshub
 
-## 1. Persiapan Cluster Kubernetes
+## 1. Persiapan Cluster Kubernetes dengan k3s
 Menunjukkan cluster Kubernetes sudah siap digunakan dengan 1 node master dan 2 node worker dalam kondisi Ready, serta namespace yang dibutuhkan sudah tersedia.
 <img width="1858" height="121" alt="image" src="https://github.com/user-attachments/assets/252edace-f918-453c-92e4-be43c77ad6f3" />
 <img width="1877" height="212" alt="image" src="https://github.com/user-attachments/assets/84da1870-1e6d-4817-a55e-17544aae3f34" />
